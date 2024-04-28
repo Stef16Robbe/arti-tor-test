@@ -1,0 +1,21 @@
+[package]
+name = "arti-tor-test"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.82"
+arti-client = "0.17.0"
+arti-hyper = "0.17.0"
+http-body-util = "0.1.1"
+hyper = { version = "1.3.1", features = ["client", "http1"] }
+hyper-util = { version = "0.1.3", features = ["tokio"] }
+tls-api = "0.9.0"
+tls-api-native-tls = "0.9.0"
+tokio = "1.37.0"
+tokio-native-tls = "0.3.1"
+tracing = "0.1.40"
+tracing-subscriber = "0.3.18"
+libsqlite3-sys = { version = "0.28", features = ["bundled"] }
