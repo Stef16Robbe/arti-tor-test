@@ -25,7 +25,7 @@ async fn main() -> Result<()> {
     let host = url.host().unwrap();
     let https = url.scheme() == Some(&Scheme::HTTPS);
 
-    eprintln!("starting Arti...");
+    println!("starting Arti...");
 
     // The client config includes things like where to store persistent Tor network state.
     // The defaults provided are the same as the Arti standalone application, and save data
@@ -46,7 +46,7 @@ async fn main() -> Result<()> {
     let stream = tor_client.connect((host, port)).await?;
 
     // The rest is just standard usage of Hyper.
-    eprintln!("requesting {} via Tor...", url);
+    println!("requesting {} via Tor...", url);
 
     if https {
         let cx = TlsConnector::builder().build()?;
@@ -79,11 +79,11 @@ async fn make_request(
         )
         .await?;
 
-    eprintln!("status: {}", resp.status());
+    println!("status: {}", resp.status());
 
     while let Some(frame) = resp.body_mut().frame().await {
         let bytes = frame?.into_data().unwrap();
-        eprintln!("body: {}", std::str::from_utf8(&bytes)?);
+        println!("body: {}", std::str::from_utf8(&bytes)?);
     }
 
     Ok(())
